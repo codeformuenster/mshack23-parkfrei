@@ -16,6 +16,20 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
         <link href="css/styles_impressions.css" rel="stylesheet" />
+
+        <style type="text/css">
+
+            /* ============ desktop view ============ */
+            @media all and (min-width: 992px) {
+                .navbar .nav-item .dropdown-menu{ display: none; }
+                .navbar .nav-item:hover .nav-link{   }
+                .navbar .nav-item:hover .dropdown-menu{ display: block; }
+                .navbar .nav-item .dropdown-menu{ margin-top:0; }
+            }
+            /* ============ desktop view .end// ============ */
+
+        </style>
+
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -28,9 +42,21 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#portfolio">Das Problem</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#impressions">Die Lösung</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#about">Mitmachen</a></li>
+                        <li class="nav-item mx-0 mx-lg-1 dropdown"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#portfolio">Das Problem</a></li>
+                        <li class="nav-item mx-0 mx-lg-1 dropdown"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#impressions">Die Lösung</a></li>
+                        <!-- li class="nav-item "><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#about">Mitmachen</a></li -->
+                        <li class="nav-item mx-0 mx-lg-1 button active dropdown">
+                            <a class="nav-link btn btn-warning dropdown-toggle py-3 px-0 px-lg-3 rounded" href="/mitmachen.html"
+                              >
+                                Aktiv werden
+                            </a>
+                            <ul class="dropdown-menu">
+                              <li><a class="dropdown-item" href="/mitmachen.html#stadtviertel">Stadtviertel wählen</a></li>
+                              <li><a class="dropdown-item" href="#">Spenden</a></li>
+                              <li><a class="dropdown-item" href="#">Mitglied werden</a></li>
+                            </ul>
+                          </li>
+
                     </ul>
                 </div>
             </div>
@@ -63,6 +89,25 @@
                     <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
                     <div class="divider-custom-line"></div>
                 </div>
+
+                Unsere Stadtviertel werden zunehmend von Autos dominiert, ob fahrend oder stehend. Auch unsere Köpfe sind zugeparkt: Volle Straßen sehen für uns inzwischen normal aus, falsch geparkte Autos werden wortlos mit dem Kinderwagen oder Rollator umfahren und Fahrräder widerrum werden als störend empfunden.
+
+Hier eine Liste, was u.A. problematisch an dieser Situation ist:
+
+    Eltern lassen ihre Kinder nicht mehr vor dem Haus spielen!!
+    Parkplatzsuchverkehr erhöht unnötig die CO2 Belastung
+    Lärm! und Gestank!
+    Lieferverkehr wird unnötig angehupt
+    Feinstaub, Umweltbelastung
+    Aufenthaltsqualität ist gering
+    Punktuell sind unsere Städte viel zu heiß
+    Barrierefreiheit ist nicht mehr gegeben
+    Gesetzesverstöße beim Parken werden geduldet (Bürgersteig)
+
+(Quelle: https://de.wikipedia.org/wiki/Superblock_(Stadtplanung)#Stand_der_Wissenschaft)
+Die Lösung
+
+
                 <!-- Portfolio Grid Items-->
                 <div class="row justify-content-center">
                     <!-- Portfolio Item 1-->
