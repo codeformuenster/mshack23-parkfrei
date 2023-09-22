@@ -24,8 +24,14 @@ function loadSelectedImagePair() {
     } else if (selectedPair === "pair3") {
         image1.src = "assets/img/street_3_0.jpg"; 
         image2.src = "assets/img/street_3_1.jpg"; 
+    }  else if (selectedPair === "pair4") {
+        image1.src = "assets/img/street_4_0.jpg"; 
+        image2.src = "assets/img/street_4_1.jpg"; 
     }
     // Add more conditions for other image pairs as needed
+
+    slider.value = 0;
+    updateImageVisibility();
 }
 
 slider.addEventListener("input", updateImageVisibility);
