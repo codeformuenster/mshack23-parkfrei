@@ -132,18 +132,24 @@
                     <div class="divider-custom-line"></div>
                 </div>
                 <div class="image-container">
-                    <img id="image1" src="assets/img/street_1_0.jpg" alt="Image 1">
-                    <img id="image2" src="assets/img/street_1_1.jpg" alt="Image 2">
+                    <img id="image1" class="img-fluid" src="assets/img/street_1_0.jpg" alt="Image 1">
+                    <img id="image2" class="img-fluid img2" src="assets/img/street_1_1.jpg" alt="Image 2">
                 </div>
                 <div class="slider-container">
-                    <label for="imageSelect">Choose an image pair:</label>
-                    <select id="imageSelect">
+                    <label for="imageSelect">Wähle eine Straße:</label>
+                    <select id="imageSelect" class="form-select">
                         <option value="pair1">Offenbergstraße</option>
                         <option value="pair2">Teichstraße</option>
                         <option value="pair3">Südstraße</option>
                         <!-- Add more options as needed -->
                     </select>
-                    <input type="range" id="slider" min="0" max="1" step="0.01" value="0">
+                </div>
+                <div class="mt-4 row">
+                    <div class="col" align="center">
+                        Benutze den Slider zum Vergleich: Straße mit Autos vs. Straße ohne Autos
+                        <input type="range" class="form-range" id="slider" min="0" max="1" step="0.01" value="0">
+
+                    </div>
                 </div>
             </div>
         </section>

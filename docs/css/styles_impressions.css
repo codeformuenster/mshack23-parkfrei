@@ -1,10 +1,8 @@
 .image-container {
     position: relative;
-    width: 1664px;
-    height: 1024px; 
 }
 
-.image-container > img {
+.image-container > .img2 {
     position: absolute;
     top: 0;
     left: 0;
@@ -20,5 +18,5 @@
 }
 
 #slider {
-    width: 500px;
+    width: 80%;
 }
