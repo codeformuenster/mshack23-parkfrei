@@ -77,7 +77,7 @@ async function handleClick(event) {
     const ratio = event.target.height / event.target.naturalHeight;
   
     // objectDetector.detect returns a promise which, when resolved, is an array of Detection objects
-    const detections = objectDetector.detect(previewImage);
+    const detections = await objectDetector.detect(previewImage);
     console.log(detections);
     displayImageDetections(detections, previewImage);
     drawNewImage(detections.detections);
@@ -85,7 +85,7 @@ async function handleClick(event) {
     loadingSpinner2.style.display = "none";
   }
 
-  function displayImageDetections(
+  async function displayImageDetections(
     result,
     resultElement
   ) {
