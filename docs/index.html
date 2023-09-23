@@ -31,7 +31,7 @@
         </style>
 
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-
+    
 
 
 
@@ -133,10 +133,14 @@ Quellen: [Stadtplanung: Superblock] (https://de.wikipedia.org/wiki/Superblock_(S
                 <div class="image-container">
                     <img id="image1" class="img-fluid img1" src="assets/img/street_1_0.jpg" alt="Image 1">
                     <img id="image2" class="img-fluid img2" src="assets/img/street_1_1.jpg" alt="Image 2">
+                    <div class="spinner-border" id="loadingSpinner">
+                        <span class="sr-only"></span>
+                    </div>
                 </div>
-                <div class="slider-container">
-                    <label for="imageSelect">Wähle eine Straße:</label>
-                    <select id="imageSelect" class="form-select">
+                <div class="container">
+                <div class="slider-container row">
+                    <label for="imageSelect" class="col-sm-2">Wähle eine Straße:</label>
+                    <select id="imageSelect" class="form-select col-sm-10">
                         <option value="pair1">Offenbergstraße - Münster</option>
                         <option value="pair2">Teichstraße - Münster</option>
                         <option value="pair3">Südstraße - Münster</option>
@@ -149,9 +153,29 @@ Quellen: [Stadtplanung: Superblock] (https://de.wikipedia.org/wiki/Superblock_(S
                 </div>
                 <div class="mt-4 row">
                     <div class="col" align="center">
-                        Benutze den Slider zum Vergleich: Straße mit Autos vs. Straße ohne Autos
-                        <input type="range" class="form-range" id="slider" min="0" max="1" step="0.01" value="0">
-
+                        <div class="row">
+                            <div class="col"><h5>Vorher</h5></div>
+                            <div class="col">
+                                <input type="range" class="form-range" id="slider" min="0" max="1" step="0.01" value="0">
+                            </div>
+                            <div class="col" ><h5>Nachher</h5></div>
+                        </div>
+                    </div>
+                </div>
+                <hr/>
+                <div class="mt-4 row">
+                    <h4>Ich möchte sehen, wie meine Straße ohne Autos aussieht.</h4>
+                    <label for="formFile" class="form-label">Klicke hier, um ein Foto von deiner Straße hochzuladen:</label>
+                    <input class="form-control" type="file" id="fileInput">
+                    <div style="position: relative;">
+                        <img class="img-fluid" id="previewImage" style="display: none; margin: 10px;">
+                    </div>
+                    <button type="submit" class="btn btn-primary mb-3" id="detectSubmit" style="display: none; margin: 10px;">Los gehts</button>
+                    <div class="spinner-border" id="loadingSpinner2" style="display: none;">
+                        <span class="sr-only"></span>
+                    </div>
+                    <div>
+                        <canvas id="output-canvas"></canvas>
                     </div>
                 </div>
             </div>
@@ -488,7 +512,10 @@ Quellen: [Stadtplanung: Superblock] (https://de.wikipedia.org/wiki/Superblock_(S
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
-        <script src="js/scripts_impressions.js"></script>
+
+        
+        <!-- <script src="https://cdn.jsdelivr.net/npm/denoise-js@1.0.0/dist/denoise.js"></script> -->
+        <script type="module" src="js/scripts_impressions.js"></script>
 
 
         <script>
