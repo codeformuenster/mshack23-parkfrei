@@ -23,6 +23,20 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <style type="text/css">
+
+        /* ============ desktop view ============ */
+        @media all and (min-width: 992px) {
+            .navbar .nav-item .dropdown-menu{ display: none; }
+            .navbar .nav-item:hover .nav-link{   }
+            .navbar .nav-item:hover .dropdown-menu{ display: block; }
+            .navbar .nav-item .dropdown-menu{ margin-top:0; }
+        }
+        /* ============ desktop view .end// ============ */
+
+    </style>
+
     <style>
         #map {
             height: 50vh;
@@ -33,32 +47,66 @@
 
 <body id="page-top">
     <!-- Navigation-->
+
+
     <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
         <div class="container">
-            <a class="navbar-brand" href="index.html#page-top">PARK | FREI</a>
-            <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button"
-                data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive"
-                aria-expanded="false" aria-label="Toggle navigation">
+            <a class="navbar-brand" href="#page-top">PARK | FREI</a>
+            <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 Menu
                 <i class="fas fa-bars"></i>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
-                            href="index.html#portfolio">Unsere Ziele</a></li>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
-                            href="index.html#impressions">Impressionen</a></li>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
-                            href="#about">About</a></li>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
-                            href="#contact">Kontakt</a></li>
+                    <li class="nav-item mx-0 mx-lg-1 dropdown"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/index.html#portfolio">Das Problem</a></li>
+                    <li class="nav-item mx-0 mx-lg-1 dropdown"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/loesung.html#portfolio">Die Lösung</a></li>
+                    <!-- li class="nav-item "><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#about">Mitmachen</a></li -->
+                    <li class="nav-item mx-0 mx-lg-1 button active dropdown">
+                        <a class="nav-link btn btn-warning dropdown-toggle py-3 px-0 px-lg-3 rounded" href="/mitmachen.html#portfolio"
+                          >
+                            Aktiv werden
+                        </a>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="/mitmachen.html#portfolio">Aktionstage 2024</a></li>
+                          <li><a class="dropdown-item" href="/mitmachen.html#karte">Stadtteil wählen</a></li>
+                          <li><a class="dropdown-item" href="/mitmachen.html#organisationen">Gemeinsame Ziele</a></li>
+                        </ul>
+                      </li>
+
                 </ul>
             </div>
         </div>
     </nav>
-    <!-- Masthead-->
-    <header class="masthead text-center">
+
+
+    <header class="masthead bg-primary text-white text-center">
         <div class="container d-flex align-items-center flex-column">
+            <!-- Masthead Avatar Image-->
+            <img class="masthead-avatar mb-5" src="assets/img/parkfrei-7.png" alt="..." />
+            <!-- Masthead Heading-->
+            <h1 class="masthead-heading text-uppercase mb-0">Park | Frei </h1>
+            <!-- Icon Divider
+            <div class="divider-custom divider-light">
+                <div class="divider-custom-line"></div>
+                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                <div class="divider-custom-line"></div>
+            </div>-->
+            <!-- Masthead Subheading-->
+            <p class="masthead-subheading font-weight-light mb-0 py-2">Für eine lebenswertere Stadt</p>
+        </div>
+    </header>
+
+    <!-- Masthead-->
+    <section class="page-section portfolio" id="portfolio">
+        <div class="container">
+            <!-- Portfolio Section Heading-->
+            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Aktiv werden</h2>
+            <!-- Icon Divider-->
+            <div class="divider-custom">
+                <div class="divider-custom-line"></div>
+                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                <div class="divider-custom-line"></div>
+            </div>
             <div>
                 <p>
                     Der verfügbare Raum in einem Stadtviertel ist endlich. Durch die bisherige Dominanz der parkenden
@@ -84,9 +132,33 @@
                     <li>Ergebnis-Auswertung bis zum nächsten MS Hack</li>
                 </ol>
             </div>
+        </div>
+    </section>
+
+    <section style="background-color:#1abc9c" class="text-white page-section" id="karte">
+        <div class="container">
+            <h2 class="page-section-heading text-center text-uppercase  mb-0">Stadtviertel wählen</h2>
+            <div class="divider-custom divider-light">
+                <div class="divider-custom-line"></div>
+                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                <div class="divider-custom-line"></div>
+            </div>
+
             <div id="map"></div>
+
+        </div>
+    </section>
+    <section class="page-section portfolio" id="organisationen">
+        <div class="container">
+            <h2 class="page-section-heading text-center text-uppercase  mb-0">Gemeinsame Ziele</h2>
+            <div class="divider-custom divider-light">
+                <div class="divider-custom-line"></div>
+                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                <div class="divider-custom-line"></div>
+            </div>
             <div>
-                Mögliche Mitstreiter? <br>
+                Die folgenden Organisationen verfolgen ähnliche Ziele wie wir. Schließe Dich ihnen an!
+                 <br>
                 <a href="https://Fahrradstadt.ms">Fahrradstadt.ms</a><br>
                 <a href="https://verkehrswendeimkreuzviertelms.de/">Verkehrswende im Kreuzviertel in Münster</a><br>
                 <a href="https://www.weg.li/">weg.li</a><br>
@@ -96,7 +168,7 @@
                 <a href="https://mobil-in-muenster.de/">moVe</a><br>
             </div>
         </div>
-    </header>
+    </section>
     <!-- Footer-->
     <footer class="footer text-center">
         <div class="container">
@@ -115,6 +187,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
     <script src="js/scripts.js"></script>
+
     <script src="js/quaters.js"></script>
     <script src="js/map.js"></script>
     <script>
