@@ -25,3 +25,16 @@
 #slider {
     width: 80%;
 }
+
+#historie .carousel-caption {
+    background-color:rgba(150, 150, 150, 0.7);
+}
+#historie .carousel-item {
+    height:500px
+}
+
+#historie .carousel-item img {
+    position: absolute;
+    top:-100%; left:0; right: 0; bottom:-100%;
+    margin: auto;
+}
