@@ -1,5 +1,6 @@
 const image1 = document.getElementById("image1");
 const image2 = document.getElementById("image2");
+const imagesource = document.getElementById("imagesource");
 const loadingSpinner = document.getElementById("loadingSpinner");
 const loadingSpinner2 = document.getElementById("loadingSpinner2");
 const slider = document.getElementById("slider");
@@ -219,24 +220,31 @@ function loadSelectedImagePair() {
     if (selectedPair === "pair1") {
         image1.src = "assets/img/street_1_0.jpg";
         image2.src = "assets/img/street_1_1.jpg";
+        imagesource.textContent = "";
     } else if (selectedPair === "pair2") {
         image1.src = "assets/img/street_2_0.jpg"; 
         image2.src = "assets/img/street_2_1.jpg"; 
+        imagesource.textContent = "";
     } else if (selectedPair === "pair3") {
         image1.src = "assets/img/street_3_0.jpg"; 
         image2.src = "assets/img/street_3_1.jpg"; 
+        imagesource.textContent = "";
     }  else if (selectedPair === "pair4") {
         image1.src = "assets/img/street_4_0.jpg"; 
         image2.src = "assets/img/street_4_1.jpg"; 
+        imagesource.textContent = "";
     }  else if (selectedPair === "pair5") { // source: https://www.instagram.com/p/Cw7uKYyuZNt/
         image1.src = "assets/img/street_5_0.jpg"; 
         image2.src = "assets/img/street_5_1.jpg"; 
+        imagesource.textContent = "Bildquelle: @cars.destroyed.our.citites https://www.instagram.com/p/Cw7uKYyuZNt/";
     }  else if (selectedPair === "pair6") { // source: https://www.instagram.com/p/CvP17gKOcvd/?img_index=1
         image1.src = "assets/img/street_6_0.jpg"; 
-        image2.src = "assets/img/street_6_1.jpg"; 
+        image2.src = "assets/img/street_6_1.jpg";
+        imagesource.textContent = "Bildquelle: @cars.destroyed.our.citites https://www.instagram.com/p/CvP17gKOcvd/?img_index=1";
     }  else if (selectedPair === "pair7") { // source: https://www.instagram.com/p/Cur3MMVO9J4/?img_index=1
         image1.src = "assets/img/street_7_0.jpg"; 
         image2.src = "assets/img/street_7_1.jpg"; 
+        imagesource.textContent = "Bildquelle: @cars.destroyed.our.citites https://www.instagram.com/p/Cur3MMVO9J4/?img_index=1";
     } 
     // Add more conditions for other image pairs as needed
 
