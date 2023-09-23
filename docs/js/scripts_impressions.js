@@ -1,5 +1,6 @@
 const image1 = document.getElementById("image1");
 const image2 = document.getElementById("image2");
+const loadingSpinner = document.getElementById("loadingSpinner");
 const slider = document.getElementById("slider");
 const imageSelect = document.getElementById("imageSelect");
 const fileInput = document.getElementById('fileInput');
@@ -18,6 +19,8 @@ import {
 let objectDetector;
 let runningMode = "IMAGE";
 const relevantLabels = ["car", "truck", "bus", "motorcycle"]
+
+let imagesLoaded = [false, false];
 
 
 // Initialize the object detector
@@ -201,6 +204,8 @@ function updateImageVisibility() {
 }
 
 function loadSelectedImagePair() {
+    loadingSpinner.style.display = 'block';
+
     const selectedPair = imageSelect.value;
 
     // Load the selected image pair based on the dropdown value
@@ -258,3 +263,19 @@ function handleFile(file) {
         alert('Please select a valid image file.');
     }
 }
+
+image1.addEventListener("load", () => {
+    console.log("image 1 loaded");
+    imagesLoaded[0] = true;
+    if(imagesLoaded[1]){
+        loadingSpinner.style.display = "none";
+    }
+})
+
+image2.addEventListener("load", () => {
+    console.log("image 2 loaded");
+    imagesLoaded[1] = true;
+    if(imagesLoaded[0]){
+        loadingSpinner.style.display = "none";
+    }
+})
