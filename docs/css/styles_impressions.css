@@ -38,3 +38,10 @@
     top:-100%; left:0; right: 0; bottom:-100%;
     margin: auto;
 }
+
+.highlighter {
+    background: rgba(0, 255, 0, 0.25);
+    border: 1px dashed #fff;
+    z-index: 1;
+    position: absolute;
+}
