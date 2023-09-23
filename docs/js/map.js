@@ -1,6 +1,3 @@
-// import * from "http://codeformuenster.org/open-data-karte-muenster/maps/Ebene_2_Stadtteil.geojson.js";
-
-
 const coordiates = [51.96, 7.62];
 const scale = 11;
 
@@ -47,23 +44,7 @@ function onEachQuater(quater, layer){
     })
 }
 
-var quater = L.geoJson(stadtteileMuenster2, {
+var quater = L.geoJson(quatersOfMuenster, {
     style: style,
     onEachFeature: onEachQuater
 }).addTo(map);
-
-
-// function onRegionClick(e) {
-//     console.log(e)
-//     console.log(e.layer.feature.properties.Name)
-//     // get clicks or define it
-//     if (e.layer.feature.properties.counts == undefined){
-//         e.layer.feature.properties.counts = 0
-//     }
-//     e.layer.feature.properties.counts++
-//     quater.setStyle(style(e.layer.feature.properties.counts))
-//     console.log(e)
-//     console.log(e.layer.feature.properties.counts)
-// }
-
-// quater.on('click', onRegionClick);
