@@ -11046,7 +11046,7 @@ html {
   background-color: #1a252f;
 }
 
-div.scroll-container { 
+div.scroll-container {
   overflow: auto;
   white-space: nowrap;
   padding: 10px;
@@ -11054,4 +11054,28 @@ div.scroll-container {
 
 div.scroll-container img {
   padding: 10px;
+}
+
+
+.footer-item {
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    flex: 0 0 50%;
+    max-width: 50%;
+}
+.footer-item a {
+    text-align: center;
+}
+.footer-img {
+    max-height: 100px;
+    object-fit: contain;
+    margin: 1rem 0;
+}
+.footer-link {
+    color: white;
 }
