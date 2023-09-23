@@ -11046,8 +11046,7 @@ html {
   background-color: #1a252f;
 }
 
-div.scroll-container {
-  background-color: #333;
+div.scroll-container { 
   overflow: auto;
   white-space: nowrap;
   padding: 10px;
