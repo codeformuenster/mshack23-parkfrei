@@ -1,11 +1,12 @@
 const image1 = document.getElementById("image1");
 const image2 = document.getElementById("image2");
 const loadingSpinner = document.getElementById("loadingSpinner");
+const loadingSpinner2 = document.getElementById("loadingSpinner2");
 const slider = document.getElementById("slider");
 const imageSelect = document.getElementById("imageSelect");
 const fileInput = document.getElementById('fileInput');
 const previewImage = document.getElementById('previewImage');
-const detectSubmit = document.getElementById('detect_submit');
+const detectSubmit = document.getElementById('detectSubmit');
 const outputCanvas = document.getElementById('output-canvas');
 const ctx = outputCanvas.getContext('2d');
 
@@ -48,6 +49,8 @@ detectSubmit.addEventListener("click", handleClick);
  * Detect objects in still images on click
  */
 async function handleClick(event) {
+    loadingSpinner2.style.display = "block";
+
     const highlighters = event.target.parentNode.getElementsByClassName(
       "highlighter"
     );
@@ -78,6 +81,8 @@ async function handleClick(event) {
     console.log(detections);
     displayImageDetections(detections, previewImage);
     drawNewImage(detections.detections);
+
+    loadingSpinner2.style.display = "none";
   }
 
   function displayImageDetections(
@@ -259,6 +264,8 @@ function handleFile(file) {
             previewImage.style.display = 'block';
         };
         reader.readAsDataURL(file);
+
+        detectSubmit.style.display = "block";
     } else {
         alert('Please select a valid image file.');
     }
