@@ -90,26 +90,26 @@ async function handleClick(event) {
         }
 
         // Description text
-        const p = document.createElement("p");
-        p.setAttribute("class", "info");
-        p.innerText =
-            detection.categories[0].categoryName +
-            " - with " +
-            Math.round(parseFloat(detection.categories[0].score) * 100) +
-            "% confidence.";
+        // const p = document.createElement("p");
+        // p.setAttribute("class", "info");
+        // p.innerText =
+        //     detection.categories[0].categoryName +
+        //     " - with " +
+        //     Math.round(parseFloat(detection.categories[0].score) * 100) +
+        //     "% confidence.";
         // Positioned at the top left of the bounding box.
         // Height is whatever the text takes up.
         // Width subtracts text padding in CSS so fits perfectly.
-        p.style =
-            "left: " +
-            detection.boundingBox.originX * ratio +
-            "px;" +
-            "top: " +
-            detection.boundingBox.originY * ratio +
-            "px; " +
-            "width: " +
-            (detection.boundingBox.width * ratio - 10) +
-            "px;";
+        // p.style =
+        //     "left: " +
+        //     detection.boundingBox.originX * ratio +
+        //     "px;" +
+        //     "top: " +
+        //     detection.boundingBox.originY * ratio +
+        //     "px; " +
+        //     "width: " +
+        //     (detection.boundingBox.width * ratio - 10) +
+        //     "px;";
         const highlighter = document.createElement("div");
         highlighter.setAttribute("class", "highlighter");
         highlighter.style =
@@ -127,7 +127,7 @@ async function handleClick(event) {
             "px;";
     
         resultElement.parentNode.appendChild(highlighter);
-        resultElement.parentNode.appendChild(p);
+        // resultElement.parentNode.appendChild(p);
     }
   }
 
