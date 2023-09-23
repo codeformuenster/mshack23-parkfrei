@@ -2,6 +2,8 @@ const image1 = document.getElementById("image1");
 const image2 = document.getElementById("image2");
 const slider = document.getElementById("slider");
 const imageSelect = document.getElementById("imageSelect");
+const fileInput = document.getElementById('fileInput');
+const previewImage = document.getElementById('previewImage');
 
 function updateImageVisibility() {
     const sliderValue = slider.value;
@@ -49,3 +51,23 @@ imageSelect.addEventListener("change", loadSelectedImagePair);
 // Initialize the visibility
 updateImageVisibility();
 loadSelectedImagePair();
+
+// Handle file selection via input
+fileInput.addEventListener('change', function (e) {
+    const file = e.target.files[0];
+    handleFile(file);
+});
+
+// Function to handle the selected/dropped file
+function handleFile(file) {
+    if (file && file.type.startsWith('image/')) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            previewImage.src = e.target.result;
+            previewImage.style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+    } else {
+        alert('Please select a valid image file.');
+    }
+}
