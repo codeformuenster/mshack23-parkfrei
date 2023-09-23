@@ -27,7 +27,16 @@ function loadSelectedImagePair() {
     }  else if (selectedPair === "pair4") {
         image1.src = "assets/img/street_4_0.jpg"; 
         image2.src = "assets/img/street_4_1.jpg"; 
-    }
+    }  else if (selectedPair === "pair5") { // source: https://www.instagram.com/p/Cw7uKYyuZNt/
+        image1.src = "assets/img/street_5_0.jpg"; 
+        image2.src = "assets/img/street_5_1.jpg"; 
+    }  else if (selectedPair === "pair6") { // source: https://www.instagram.com/p/CvP17gKOcvd/?img_index=1
+        image1.src = "assets/img/street_6_0.jpg"; 
+        image2.src = "assets/img/street_6_1.jpg"; 
+    }  else if (selectedPair === "pair7") { // source: https://www.instagram.com/p/Cur3MMVO9J4/?img_index=1
+        image1.src = "assets/img/street_7_0.jpg"; 
+        image2.src = "assets/img/street_7_1.jpg"; 
+    } 
     // Add more conditions for other image pairs as needed
 
     slider.value = 0;
