@@ -51,39 +51,41 @@ detectSubmit.addEventListener("click", handleClick);
 async function handleClick(event) {
     loadingSpinner2.style.display = "block";
 
-    const highlighters = event.target.parentNode.getElementsByClassName(
-      "highlighter"
-    );
-    while (highlighters[0]) {
-      highlighters[0].parentNode.removeChild(highlighters[0]);
-    }
-  
-    const infos = event.target.parentNode.getElementsByClassName("info");
-    while (infos[0]) {
-      infos[0].parentNode.removeChild(infos[0]);
-    }
-  
-    if (!objectDetector) {
-      alert("Object Detector is still loading. Please try again.");
-      return;
-    }
-  
-    // if video mode is initialized, set runningMode to image
-    if (runningMode === "VIDEO") {
-      runningMode = "IMAGE";
-      await objectDetector.setOptions({ runningMode: "IMAGE" });
-    }
-  
-    const ratio = event.target.height / event.target.naturalHeight;
-  
-    // objectDetector.detect returns a promise which, when resolved, is an array of Detection objects
-    const detections = await objectDetector.detect(previewImage);
-    console.log(detections);
-    displayImageDetections(detections, previewImage);
-    drawNewImage(detections.detections);
-
-    loadingSpinner2.style.display = "none";
+    window.setTimeout(doDetections, 10);
   }
+
+  async function doDetections(){
+    const highlighters = detectSubmit.parentNode.getElementsByClassName(
+        "highlighter"
+      );
+      while (highlighters[0]) {
+        highlighters[0].parentNode.removeChild(highlighters[0]);
+      }
+    
+      const infos = detectSubmit.parentNode.getElementsByClassName("info");
+      while (infos[0]) {
+        infos[0].parentNode.removeChild(infos[0]);
+      }
+    
+      if (!objectDetector) {
+        alert("Object Detector is still loading. Please try again.");
+        return;
+      }
+    
+      // if video mode is initialized, set runningMode to image
+      if (runningMode === "VIDEO") {
+        runningMode = "IMAGE";
+        await objectDetector.setOptions({ runningMode: "IMAGE" });
+      }
+    
+      // objectDetector.detect returns a promise which, when resolved, is an array of Detection objects
+      const detections = await objectDetector.detect(previewImage);
+      console.log(detections);
+      displayImageDetections(detections, previewImage);
+      drawNewImage(detections.detections);
+  
+      loadingSpinner2.style.display = "none";
+  } 
 
   async function displayImageDetections(
     result,
