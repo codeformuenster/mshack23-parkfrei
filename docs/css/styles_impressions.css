@@ -49,3 +49,36 @@
 .imagesource{
     font-size: 12pt;
 }
+
+/* For webkit-based browsers (Chrome, Safari) */
+#slider::-webkit-slider-thumb {
+    background-color: #ba4c63; /* Change this to the desired color */
+    width: 20px; /* Adjust the width as needed */
+    height: 20px; /* Adjust the height as needed */
+}
+
+#slider::-webkit-slider-runnable-track {
+    background-color: #cccccc; /* Change this to the desired track color */
+}
+
+/* For Firefox */
+#slider::-moz-range-thumb {
+    background-color: #ba4c63; /* Change this to the desired color */
+    width: 20px; /* Adjust the width as needed */
+    height: 20px; /* Adjust the height as needed */
+}
+
+#slider::-moz-range-track {
+    background-color: #cccccc; /* Change this to the desired track color */
+}
+
+/* For other browsers (may not work in all) */
+#slider::-ms-thumb {
+    background-color: #ba4c63; /* Change this to the desired color */
+    width: 20px; /* Adjust the width as needed */
+    height: 20px; /* Adjust the height as needed */
+}
+
+#slider::-ms-track {
+    background-color: #cccccc; /* Change this to the desired track color */
+}

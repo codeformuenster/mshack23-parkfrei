@@ -175,6 +175,68 @@
             </div>
         </section>
 
+        <!-- VORHER NACHHER BEREICH -->
+
+        <section style="background-color:#1abc9c" class="text-white page-section" id="impressions">
+            <div class="container">
+                <h2 class="page-section-heading text-center text-uppercase  mb-0">Vorher / Nachher</h2>
+                <div class="divider-custom divider-light">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+                <div class="image-container">
+                    <img id="image1" class="img-fluid img1" src="assets/img/street_1_0.jpg" alt="Image 1">
+                    <img id="image2" class="img-fluid img2" src="assets/img/street_1_1.jpg" alt="Image 2">
+                    <div class="spinner-border" id="loadingSpinner">
+                        <span class="sr-only"></span>
+                    </div>
+                </div>
+                <span class="imagesource" id="imagesource"></span>
+                <div class="container">
+                <div class="slider-container row">
+                    <label for="imageSelect" class="col-sm-3">Wähle eine Straße:</label>
+                    <select id="imageSelect" class="form-select col-sm-9">
+                        <option value="pair1">Offenbergstraße - Münster</option>
+                        <option value="pair2">Teichstraße - Münster</option>
+                        <option value="pair3">Südstraße - Münster</option>
+                        <option value="pair4">Scharnhorststraße - Münster</option>
+                        <option value="pair5">Utrecht</option>
+                        <option value="pair6">Zwierzyniecka - Poznan</option>
+                        <option value="pair7">Düsseldorf</option>
+                        <!-- Add more options as needed -->
+                    </select>
+                </div>
+                <div class="mt-4 row">
+                    <div class="col" align="center">
+                        <div class="row">
+                            <div class="col"><h5>Vorher</h5></div>
+                            <div class="col">
+                                <input type="range" class="form-range" id="slider" min="0" max="1" step="0.01" value="0" style="color: red;">
+                            </div>
+                            <div class="col" ><h5>Nachher</h5></div>
+                        </div>
+                    </div>
+                </div>
+                <hr/>
+                <div class="mt-4 row">
+                    <h4>Ich möchte sehen, wie meine Straße ohne Autos aussieht.</h4>
+                    <label for="formFile" class="form-label">Klicke hier, um ein Foto von deiner Straße hochzuladen:</label>
+                    <input class="form-control" type="file" id="fileInput">
+                    <div style="position: relative;">
+                        <img class="img-fluid" id="previewImage" style="display: none; margin: 10px;">
+                    </div>
+                    <button type="submit" class="btn btn-secondary mb-3" id="detectSubmit" style="display: none; margin: 10px;">Los gehts</button>
+                    <div class="spinner-border" id="loadingSpinner2" style="display: none;">
+                        <span class="sr-only"></span>
+                    </div>
+                    <div>
+                        <canvas id="output-canvas"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section class="page-section portfolio" id="portfolio">
             <div class="container">
 
@@ -507,7 +569,7 @@ Quelle: https://www.gesetze-im-internet.de/stvo_2013/__12.html
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
-        <script src="js/scripts_impressions.js"></script>
+        <script type="module" src="js/scripts_impressions.js"></script>
 
 
         <script>
