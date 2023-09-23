@@ -5,16 +5,20 @@ const imageSelect = document.getElementById("imageSelect");
 const fileInput = document.getElementById('fileInput');
 const previewImage = document.getElementById('previewImage');
 const detectSubmit = document.getElementById('detect_submit');
+const outputCanvas = document.getElementById('output-canvas');
+const ctx = outputCanvas.getContext('2d');
+
+import {InpaintTelea} from "/assets/inpaint.js"
 
 import {
     ObjectDetector,
     FilesetResolver,
-    // Detection,
-    // ObjectDetectionResult
   } from "/assets/tasks-vision.min.js";
   
 let objectDetector;
 let runningMode = "IMAGE";
+const relevantLabels = ["car", "truck", "bus", "motorcycle"]
+
 
 // Initialize the object detector
 const initializeObjectDetector = async () => {
@@ -26,7 +30,7 @@ const initializeObjectDetector = async () => {
         modelAssetPath: `assets/efficientdet_lite0.tflite`,
         delegate: "GPU"
       },
-      scoreThreshold: 0.3,
+      scoreThreshold: 0.2,
       runningMode: runningMode
     });
     // demosSection.classList.remove("invisible");
@@ -70,6 +74,7 @@ async function handleClick(event) {
     const detections = objectDetector.detect(previewImage);
     console.log(detections);
     displayImageDetections(detections, previewImage);
+    drawNewImage(detections.detections);
   }
 
   function displayImageDetections(
@@ -80,47 +85,111 @@ async function handleClick(event) {
     console.log(ratio);
   
     for (let detection of result.detections) {
-      // Description text
-      const p = document.createElement("p");
-      p.setAttribute("class", "info");
-      p.innerText =
-        detection.categories[0].categoryName +
-        " - with " +
-        Math.round(parseFloat(detection.categories[0].score) * 100) +
-        "% confidence.";
-      // Positioned at the top left of the bounding box.
-      // Height is whatever the text takes up.
-      // Width subtracts text padding in CSS so fits perfectly.
-      p.style =
-        "left: " +
-        detection.boundingBox.originX * ratio +
-        "px;" +
-        "top: " +
-        detection.boundingBox.originY * ratio +
-        "px; " +
-        "width: " +
-        (detection.boundingBox.width * ratio - 10) +
-        "px;";
-      const highlighter = document.createElement("div");
-      highlighter.setAttribute("class", "highlighter");
-      highlighter.style =
-        "left: " +
-        detection.boundingBox.originX * ratio +
-        "px;" +
-        "top: " +
-        detection.boundingBox.originY * ratio +
-        "px;" +
-        "width: " +
-        detection.boundingBox.width * ratio +
-        "px;" +
-        "height: " +
-        detection.boundingBox.height * ratio +
-        "px;";
-  
-      resultElement.parentNode.appendChild(highlighter);
-      resultElement.parentNode.appendChild(p);
+        if(relevantLabels.indexOf(detection.categories[0].categoryName) < 0){
+            continue;
+        }
+
+        // Description text
+        const p = document.createElement("p");
+        p.setAttribute("class", "info");
+        p.innerText =
+            detection.categories[0].categoryName +
+            " - with " +
+            Math.round(parseFloat(detection.categories[0].score) * 100) +
+            "% confidence.";
+        // Positioned at the top left of the bounding box.
+        // Height is whatever the text takes up.
+        // Width subtracts text padding in CSS so fits perfectly.
+        p.style =
+            "left: " +
+            detection.boundingBox.originX * ratio +
+            "px;" +
+            "top: " +
+            detection.boundingBox.originY * ratio +
+            "px; " +
+            "width: " +
+            (detection.boundingBox.width * ratio - 10) +
+            "px;";
+        const highlighter = document.createElement("div");
+        highlighter.setAttribute("class", "highlighter");
+        highlighter.style =
+            "left: " +
+            detection.boundingBox.originX * ratio +
+            "px;" +
+            "top: " +
+            detection.boundingBox.originY * ratio +
+            "px;" +
+            "width: " +
+            detection.boundingBox.width * ratio +
+            "px;" +
+            "height: " +
+            detection.boundingBox.height * ratio +
+            "px;";
+    
+        resultElement.parentNode.appendChild(highlighter);
+        resultElement.parentNode.appendChild(p);
     }
   }
+
+function drawNewImage(detections){
+    outputCanvas.width = previewImage.width;
+    outputCanvas.height = previewImage.height;
+    const ratio = previewImage.height / previewImage.naturalHeight;
+
+
+    ctx.drawImage(previewImage, 0, 0, previewImage.width,  previewImage.height);
+
+    let ctx_image_data = ctx.getImageData(0, 0, previewImage.width, previewImage.height);
+
+    let width = ctx_image_data.width, height = ctx_image_data.height;
+	let mask_u8 = new Uint8Array(width * height);
+
+    for (let detection of detections) {
+        if(relevantLabels.indexOf(detection.categories[0].categoryName) < 0){
+            continue;
+        }
+
+        // Extract bounding box coordinates
+        let { originX, originY, width, height } = detection.boundingBox;
+        
+        originX = Math.round(originX * ratio);
+        originY = Math.round(originY * ratio);
+        width = Math.round(width * ratio);
+        height = Math.round(height * ratio);
+
+        // make the box bigger
+        let newOriginX = Math.max(Math.round(originX - width*0.1), 0);
+        let newOriginY = Math.max(Math.round(originY - height*0.1), 0);
+        width = width + ((originX - newOriginX) * 2);
+        height = height + ((originY - newOriginY) * 2);
+        originX = newOriginX;
+        originY = newOriginY;
+
+        // Loop through the pixels within the bounding box
+        for (let y = originY; y < originY + height; y++) {
+            for (let x = originX; x < originX + width; x++) {
+                // Calculate the index in the mask_u8 array
+                let index = y * ctx_image_data.width + x;
+                
+                // Set the corresponding element to 1
+                mask_u8[index] = 1;
+            }
+        }
+
+        for(var channel = 0; channel < 3; channel++){
+            var img_u8 = new Uint8Array(ctx_image_data.width * ctx_image_data.height)
+            for(var n = 0; n < ctx_image_data.data.length; n+=4){
+                img_u8[n / 4] = ctx_image_data.data[n + channel]
+            }
+            InpaintTelea(ctx_image_data.width, ctx_image_data.height, img_u8, mask_u8)
+            for(var i = 0; i < img_u8.length; i++){
+                ctx_image_data.data[4 * i + channel] = img_u8[i]
+            }	
+        }
+
+        ctx.putImageData(ctx_image_data, 0, 0);
+    }
+}
 
 
 function updateImageVisibility() {
